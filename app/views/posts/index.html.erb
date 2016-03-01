@@ -1,1 +1,19 @@
 This is the home page - where the feed will be.
+
+
+<%= form_for @post do |i| %>
+  <%= i.label :title %>
+  <%= i.text_field :title %>
+  <%= i.label :body %>
+  <%= i.text_area :body %>
+  <%= i.hidden_field :user_id, :value => 1 %>
+  <%= i.submit :create %>
+
+<% end %>
+
+<br>
+<% @posts.each do |post| %>
+  <%= post.title %>
+  <%= post.body %>
+  <%= post.user_id %>
+  <% end %>
