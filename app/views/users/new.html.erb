@@ -1,1 +1,15 @@
 This is the use sign-up page.
+
+<%= form_for @user do |f| %>
+	<%= f.label :fname %>
+	<%= f.text_field :fname %>
+	<%= f.label :lname %>
+	<%= f.text_field :lname %>
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+	<%= f.label :pword %>
+	<%= f.password_field :pword %>
+	<%= f.label :description %>
+	<%= f.text_area :description %>
+	<%= f.submit :create %>
+<% end %>
