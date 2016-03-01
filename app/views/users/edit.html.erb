@@ -12,3 +12,6 @@ This is the user edit page.
 	<%= f.text_area :description %>
 	<%= f.submit :update %>
 <% end %>
+
+
+<%= link_to("Delete User", user_path(@user), method: :delete) %>

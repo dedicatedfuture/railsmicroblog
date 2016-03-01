@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		@user = get_user
 	end
 
 	def edit
@@ -42,6 +43,13 @@ class UsersController < ApplicationController
 			flash[:alert] = "There was a problem saving your changes"
 			redirect_to '/'
 		end
+	end
+
+	def destroy
+		@user = get_user
+		User.destroy(@user)
+		flash[:notice] = "Your account has been deleted"
+		redirect_to '/'
 	end
 
 
