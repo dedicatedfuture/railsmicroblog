@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @post = Post.new
+    @post_new = Post.new
     @posts = Post.all
     @comment_new = Comment.new
 
@@ -27,10 +27,29 @@ class PostsController < ApplicationController
   end
 
 
+  def edit
+    @post = get_post
+
+  end
+  def update
+    @post = get_post
+    @post.update(params[:post])
+    if @post.save
+      flash[:notice] = "Your post were saved"
+      redirect_to '/'
+    else
+      flash[:alert] = "There was a problem saving your post"
+      redirect_to '/'
+    end
+  end
 
 
-
-
+  def destroy
+    @post = get_post
+    Post.destroy(@post)
+    flash[:notice] = "Your post has been deleted!"
+    redirect_to '/'
+  end
 
 
 

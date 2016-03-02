@@ -1,13 +1,15 @@
 This is the home page - where the feed will be.
 
 
-<%= form_for @post do |i| %>
+<%= form_for @post_new do |i| %>
   <%= i.label :title %>
   <%= i.text_field :title %>
   <%= i.label :body %>
   <%= i.text_area :body %>
   <%= i.hidden_field :user_id, :value => 1 %>
   <%= i.submit :create %>
+
+
 
 <% end %>
 
@@ -16,6 +18,9 @@ This is the home page - where the feed will be.
   <%= post.title %>
   <%= post.body %>
   <%= post.user_id %>
+<% end %>
+
+     <%= link_to("Delete Post", post_path(@post), method: :delete) %>
   <% end %>
 
 
@@ -27,3 +32,6 @@ This is the home page - where the feed will be.
   <%= i.submit :create %>
 
 <% end %>  
+
+
+
