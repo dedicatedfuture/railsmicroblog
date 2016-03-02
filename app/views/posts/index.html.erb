@@ -20,5 +20,19 @@ This is the home page - where the feed will be.
   <%= post.user_id %>
 
 
+
    <%= link_to 'Destroy', post, :method => :delete%>
   <% end %>
+
+
+<%= form_for @comment_new do |i| %>
+  <%= i.hidden_field :user_id, :value => 1 %>
+  <%= i.hidden_field :post_id, :value => 1 %>
+  <%= i.label :message %>
+  <%= i.text_area :message %>
+  <%= i.submit :create %>
+
+<% end %>
+
+
+
