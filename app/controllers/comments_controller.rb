@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
 
+	def get_comment
+    Comment.find(params[:id])
+  end
+
+
 	def new
 		@comment = Comment.new
 	end
@@ -16,6 +21,16 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+  	@comment = get_comment
+  end
+
+  def update
+  	
+  end
+
+  def destroy
+  end
 
 
 

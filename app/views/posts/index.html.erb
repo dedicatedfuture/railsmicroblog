@@ -16,18 +16,18 @@ This is the home page - where the feed will be.
 <br>
 <% @posts.each do |post| %>
   <%= post.title %>
-  <%= post.body %>
+  <%= post.id %>   <%= link_to 'Destroy', post, :method => :delete %><br>
+  <%= post.body %><br>
+    <% post.comments.each do |comment|%>
+      <%= comment.message %><br>
+    <% end %>
   <%= post.user_id %>
-
-
-
-   <%= link_to 'Destroy', post, :method => :delete%>
-  <% end %>
+<% end %>
 
 
 <%= form_for @comment_new do |i| %>
   <%= i.hidden_field :user_id, :value => 1 %>
-  <%= i.hidden_field :post_id, :value => 1 %>
+  <%= i.hidden_field :post_id, :value => 9 %>
   <%= i.label :message %>
   <%= i.text_area :message %>
   <%= i.submit :create %>
