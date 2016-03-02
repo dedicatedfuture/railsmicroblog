@@ -31,7 +31,7 @@
           <%= link_to 'Delete Comment', comment, :method => :delete %><br>
         </div>
       <% end %>
-     <%= post.user.fname %>
+     <%= link_to post.user.fname, user_path(post.user_id) %>
 
     <% if logged_in? %>
       <div class="comment-field">
