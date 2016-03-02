@@ -1,4 +1,4 @@
-This is the home page - where the feed will be.
+
 
 
 <%= form_for @post_new do |i| %>
@@ -6,7 +6,7 @@ This is the home page - where the feed will be.
   <%= i.text_field :title %>
   <%= i.label :body %>
   <%= i.text_area :body %>
-  <%= i.hidden_field :user_id, :value => 1 %>
+  <%= i.hidden_field :user_id, :value => current_user.id %>
   <%= i.submit :create %>
 
 

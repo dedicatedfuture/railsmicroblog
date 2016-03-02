@@ -1,10 +1,5 @@
 class CommentsController < ApplicationController
 
-	def get_comment
-    Comment.find(params[:id])
-  end
-
-
 	def new
 		@comment = Comment.new
 	end
