@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.all
+    @comment_new = Comment.new
 
   end
   def create
