@@ -29,6 +29,10 @@ class PostsController < ApplicationController
 
   def edit
     @post = get_post
+    if current_user.id != @post.user.id
+        redirect_to '/'
+    end
+
   end
 
   def update
@@ -46,8 +50,11 @@ class PostsController < ApplicationController
 
   def destroy
     @post = get_post
-    Post.destroy(@post)
-    flash[:notice] = "Your post has been deleted!"
+    if current_user.id == @post.user.id
+      Post.destroy(@post)
+      flash[:notice] = "Your post has been deleted!"
+
+    end
     redirect_to '/'
   end
 

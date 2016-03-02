@@ -12,4 +12,8 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def foo
+    return 'bar'
+  end
+
 end
