@@ -1,0 +1,8 @@
+<%= form_for @comment_new do |i| %>
+  <%= i.hidden_field :user_id, :value => current_user.id %>
+  <%= i.hidden_field :post_id, :value => 11 %>
+  <%= i.label :message %>
+  <%= i.text_area :message %>
+  <%= i.submit :create %>
+
+<% end %>

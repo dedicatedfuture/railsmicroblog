@@ -1,17 +1,14 @@
 class PostsController < ApplicationController
 
-  def get_post
-    Post.find(params[:id])
-  end
-
   def new
 
   end
 
   def index
     @post_new = Post.new
-    @posts = Post.all
+    @posts = Post.all.includes(:comments)
     @comment_new = Comment.new
+    @comments = Comment.all
 
   end
   def create
@@ -30,8 +27,8 @@ class PostsController < ApplicationController
 
   def edit
     @post = get_post
-
   end
+
   def update
     @post = get_post
     @post.update(params[:post])
