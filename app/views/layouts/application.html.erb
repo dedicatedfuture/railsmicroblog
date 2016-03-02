@@ -4,24 +4,33 @@
 		<title>Railsmicroblog</title>
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		<link href='https://fonts.googleapis.com/css?family=Short+Stack' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Short+Stack|Raleway:300' rel='stylesheet' type='text/css'>
 		<%= csrf_meta_tags %>
 	</head>
 	<body>
+		<div class="header">
 
-		<% if logged_in? %>
- 			<%= link_to "Home", posts_path %>
- 			<%= link_to "Profile", current_user %>
- 			<%= link_to "Log out", logout_path, method: :delete %>
-		<% else %>  
-		  <%= link_to "Home", posts_path %>
-	    <%= link_to "Log In", login_path %>
-	    <%= link_to "Sign Up", new_user_path %>
-		<% end %>
+		<h1>predilections.</h1>
 
+			<div class="navbar">
+				<% if logged_in? %>
+		 			<%= link_to "Home", posts_path %>
+		 			<%= link_to "Profile", current_user %>
+		 			<%= link_to "Log out", logout_path, method: :delete %>
+				<% else %>  
+				  <%= link_to "Home", posts_path %>
+			    <%= link_to "Log In", login_path %>
+			    <%= link_to "Sign Up", new_user_path %>
+				<% end %>
+			</div>
+		</div>
 
+		<div class="container">
 
+			<%= yield %>
 
+		</div>
 
-		<%= yield %>
 	</body>
 </html>

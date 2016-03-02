@@ -1,39 +1,54 @@
-
+<div class="blog-post">
   <% if logged_in? %>
-
-  <%= form_for @post_new do |i| %>
-    <%= i.label :title %>
-    <%= i.text_field :title %>
-    <%= i.label :body %>
-    <%= i.text_area :body %>
-    <%= i.hidden_field :user_id, :value => current_user.id %>
-    <%= i.submit :create %>
+    <%= form_for @post_new do |i| %>
+      <%= i.label :title %>
+      <%= i.text_field :title, id: 'title_area' %><br><br>
+      <%= i.label :body %>
+      <%= i.text_area :body, :id => "message_area" %>
+      <%= i.hidden_field :user_id, :value => current_user.id %>
+      <%= i.submit "Submit" %>
+    <% end %>
   <% end %>
+</div>
 
-<% end %>
 
 <br>
+<div class="feed">
 <% @posts.reverse.first(10).each do |post| %>
   <div class="whole-post">
     <div class="title">
-      <%= post.title %>
+      <%= post.title %> - 
     </div>
 
-      <%= post.id %>  
-      <span class='comment-button'><%= link_to 'Add a Comment', new_post_comment_path(post) %></span>
+      <p><%= link_to post.user.fname, user_path(post.user_id) %> says -  </p>
 
-      <%= link_to 'Edit', edit_post_path(post) %>
-      <%= link_to 'Delete Post', post, :method => :delete %>
     <div class="body">
       <%= post.body %>
     </div>
-      <% post.comments.reverse.first(3).each do |comment|%>
-        <div class="comment">
-          <%= comment.message %>
-          <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete %><br>
+    <% if logged_in? %>
+      <span class='comment-button link'><%= link_to 'Add a Comment', new_post_comment_path(post) %></span>
+      <span class='comment-view link'><%= link_to 'View Comments', new_post_comment_path(post) %></span>
+    <% end %>
+
+    <% if session[:user_id] == post.user_id %>
+      <span class='edit-button link'><%= link_to 'Edit', edit_post_path(post) %></span>
+      <span class='delete-button link'><%= link_to 'Delete Post', post, :method => :delete %></span>
+    <% end %>
+
+    <% post.comments.reverse.first(3).each do |comment|%>
+      <div class="comment">
+        <div class="column-one">
+          <%= comment.user.fname %><br>
+          <span class='date'><%= comment.created_at.strftime("%d %b. %Y") %> <%= comment.created_at.strftime("%l:%M")%></span> 
         </div>
-      <% end %>
-     <%= link_to post.user.fname, user_path(post.user_id) %>
+        <div class="column-two">
+          <%= comment.message %>
+        </div>
+        <% if session[:user_id] == comment.user_id %>
+          <span class='delete-button link'><%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete %></span><br>
+        <% end %>
+      </div>
+    <% end %>
 
     <% if logged_in? %>
       <div class="comment-field">
@@ -48,7 +63,7 @@
     <% end %>
   </div>
 <% end %>
-
+</div>
 <p>Check out all of our super cool users</p>
 <ol>
 <% @users.each do |user| %>
