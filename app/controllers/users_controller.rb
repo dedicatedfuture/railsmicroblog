@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
+
 		puts "****************************************************************************************************************"
 		puts params
 		@user = User.new(params[:user])
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = get_user
+		@users_posts = @user.posts
 	end
 
 	def edit

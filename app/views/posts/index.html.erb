@@ -13,25 +13,27 @@
 <% end %>
 
 <br>
-<% @posts.reverse.each do |post| %>
+<% @posts.reverse.first(10).each do |post| %>
   <div class="whole-post">
     <div class="title">
       <%= post.title %>
     </div>
+
       <%= post.id %>  
       <span class='comment-button'><%= link_to 'Add a Comment', new_post_comment_path(post) %></span>
+
       <%= link_to 'Edit', edit_post_path(post) %>
       <%= link_to 'Delete Post', post, :method => :delete %>
     <div class="body">
       <%= post.body %>
     </div>
-      <% post.comments.each do |comment|%>
+      <% post.comments.reverse.first(3).each do |comment|%>
         <div class="comment">
           <%= comment.message %>
           <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete %><br>
         </div>
       <% end %>
-    ~ <%= post.user.fname %>
+     <%= link_to post.user.fname, user_path(post.user_id) %>
 
     <% if logged_in? %>
       <div class="comment-field">
@@ -47,7 +49,12 @@
   </div>
 <% end %>
 
-
+<p>Check out all of our super cool users</p>
+<ol>
+<% @users.each do |user| %>
+  <li><%= link_to user.fname, user_path(user.id) %></li>
+  <% end %>
+</ol>
 
 
 

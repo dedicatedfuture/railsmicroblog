@@ -9,9 +9,12 @@ class PostsController < ApplicationController
     @posts = Post.all.includes(:comments)
     @comment_new = Comment.new
     @comments = Comment.all
-
+    @users = User.all
   end
+
+
   def create
+
     puts params
     @post = Post.new(params[:post])
     if @post.save

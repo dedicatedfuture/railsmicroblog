@@ -4,3 +4,38 @@ This will be a specific user's profile page.
 <%= @user.lname %><br>
 <%= @user.email %><br>
 <%= @user.description %>
+
+<br>
+<% @users_posts.reverse.first(10).each do |post| %>
+  <div class="whole-post">
+    <div class="title">
+      <%= post.title %>
+    </div>
+      <%= post.id %>
+      <span class='comment-button'><%= link_to 'Comment'%> </span>
+      <%= link_to 'Edit', edit_post_path(post) %>
+      <%= link_to 'Delete Post', post, :method => :delete %>
+    <div class="body">
+      <%= post.body %>
+    </div>
+      <% post.comments.reverse.first(3).each do |comment|%>
+        <div class="comment">
+          <%= comment.message %>
+          <%= link_to 'Delete Comment', comment, :method => :delete %><br>
+        </div>
+      <% end %>
+     <%= post.user.fname %>
+
+    <% if logged_in? %>
+      <div class="comment-field">
+        <%= form_for @comment_new do |i| %>
+          <%= i.hidden_field :user_id, :value => current_user.id %>
+          <%= i.hidden_field :post_id, :value => 2 %>
+          <%= i.label :message %>
+          <%= i.text_area :message %>
+          <%= i.submit :create %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
