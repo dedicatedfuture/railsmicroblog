@@ -1,21 +1,16 @@
 class CommentsController < ApplicationController
 
 	def new
-    @post_comment = Post.find_by_id(params[:id])
-    # @ = Order.find_by_id(params[:id])
-		@comment_new = Comment.new
+    @post = Post.find_by_id(params[:id])
+		@comment_new = @post.comments.build
 	end
 
-	def create
-    puts params
-    @post_comment = Post.find_by_id(params[:id])
-    @comment = Comment.new(comment_params)
+  def create
+    @comment = Comment.create(params[:comment])    
     if @comment.save
-      flash[:notice] = "Comment was successful!"
       redirect_to '/'
     else
-      flash[:alert] = "There was an error creating your comment:("
-        redirect_to '/'
+      render :new
     end
   end
 
@@ -36,11 +31,18 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-  	@comment = get_comment
-    Comment.destroy(@comment)
-    flash[:notice] = "Your comment has been deleted!"
-    redirect_to '/'
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+
+    if @comment.destroy
+      flash[:notice] = "Comment was removed"
+      redirect_to '/'
+    else
+      flash[:notice] = "There was an error removing comment"
+      redirect_to '/'
+    end
   end
+
 
 
    private
