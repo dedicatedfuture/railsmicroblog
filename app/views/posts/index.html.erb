@@ -13,7 +13,7 @@
 <% end %>
 
 <br>
-<% @posts.reverse.each do |post| %>
+<% @posts.reverse.first(10).each do |post| %>
   <div class="whole-post">
     <div class="title">
       <%= post.title %>
@@ -25,13 +25,13 @@
     <div class="body">
       <%= post.body %>
     </div>
-      <% post.comments.each do |comment|%>
+      <% post.comments.reverse.first(3).each do |comment|%>
         <div class="comment">
           <%= comment.message %>
           <%= link_to 'Delete Comment', comment, :method => :delete %><br>
         </div>
       <% end %>
-     <%= post.user %>
+     <%= post.user.fname %>
 
     <% if logged_in? %>
       <div class="comment-field">
