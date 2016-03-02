@@ -28,6 +28,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = get_user
+		@users_posts = @user.posts
 	end
 
 	def edit

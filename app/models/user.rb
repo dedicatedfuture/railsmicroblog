@@ -1,10 +1,5 @@
 class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
-  has_many :comments
-  before_destroy :destroy_posts_comments
+  has_many :comments, dependent: :destroy
 
-  def destroy_posts_comments
-    self.posts.destroy_all
-    self.comments.destroy_all
-  end
 end
