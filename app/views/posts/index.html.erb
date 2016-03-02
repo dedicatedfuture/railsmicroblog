@@ -47,7 +47,12 @@
   </div>
 <% end %>
 
-
+<p>Check out all of our super cool users</p>
+<ol>
+<% @users.each do |user| %>
+  <li><%= link_to user.fname, user_path(user.id) %></li>
+  <% end %>
+</ol>
 
 
 
