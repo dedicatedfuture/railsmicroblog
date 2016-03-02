@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/' => 'posts#index'
   resources :users
-  resources :posts
+  resources :posts 
   resources :comments
 
   # The priority is based upon order of creation: first created -> highest priority.

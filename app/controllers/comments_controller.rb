@@ -1,12 +1,15 @@
 class CommentsController < ApplicationController
 
 	def new
+    @post_comment = Post.find_by_id(params[:id])
+    # @ = Order.find_by_id(params[:id])
 		@comment_new = Comment.new
 	end
 
 	def create
     puts params
-    @comment = Comment.new(params[:comment])
+    @post_comment = Post.find_by_id(params[:id])
+    @comment = Comment.new(comment_params)
     if @comment.save
       flash[:notice] = "Comment was successful!"
       redirect_to '/'
@@ -39,6 +42,12 @@ class CommentsController < ApplicationController
     redirect_to '/'
   end
 
+
+   private
+
+   def comment_params
+        params.require(:comment).permit(:user_id, :post_id, :etc)
+   end
 
 
 end
