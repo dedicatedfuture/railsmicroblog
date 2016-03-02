@@ -18,7 +18,7 @@
     <div class="title">
       <%= post.title %>
     </div>
-      <%= post.id %>  
+      <%= post.id %>
       <span class='comment-button'><%= link_to 'Comment'%> </span>
       <%= link_to 'Edit', edit_post_path(post) %>
       <%= link_to 'Delete Post', post, :method => :delete %>
@@ -31,7 +31,7 @@
           <%= link_to 'Delete Comment', comment, :method => :delete %><br>
         </div>
       <% end %>
-    ~ <%= post.user.fname %>
+     <%= post.user %>
 
     <% if logged_in? %>
       <div class="comment-field">
