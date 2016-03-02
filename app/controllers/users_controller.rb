@@ -4,6 +4,10 @@ class UsersController < ApplicationController
 		User.find(params[:id])
 	end
 
+	def current_user
+   session[:current_user_id] = @user.id
+
+  end
 
 	def index
 	end
@@ -16,7 +20,7 @@ class UsersController < ApplicationController
 		puts "****************************************************************************************************************"
 		puts params
 		@user = User.new(params[:user])
-		if @user.save 
+		if @user.save
 			flash[:notice] = "User was successfully created"
 			redirect_to '/'
 		else
