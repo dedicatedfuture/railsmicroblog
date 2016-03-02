@@ -15,14 +15,24 @@ This is the home page - where the feed will be.
 
 <br>
 <% @posts.each do |post| %>
-  <%= post.title %>
-  <%= post.id %>   <%= link_to 'Update', edit_post_path(post) %>
-  <%= link_to 'Destroy', post, :method => :delete %><br>
-  <%= post.body %><br>
-    <% post.comments.each do |comment|%>
-      <%= comment.message %><%= link_to 'Destroy', comment, :method => :delete %><br>
-    <% end %>
-  <%= post.user_id %>
+  <div class="whole-post">
+    <div class="title">
+      <%= post.title %>
+    </div>
+      <%= post.id %>   
+      <%= link_to 'Edit', edit_post_path(post) %>
+      <%= link_to 'Delete Post', post, :method => :delete %>
+    <div class="body">
+      <%= post.body %>
+    </div>
+      <% post.comments.each do |comment|%>
+        <div class="comment">
+          <%= comment.message %>
+          <%= link_to 'Delete Comment', comment, :method => :delete %><br>
+        </div>
+      <% end %>
+    ~ <%= post.user.fname %>
+  </div>
 <% end %>
 
 

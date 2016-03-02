@@ -1,3 +1,24 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.whole-post{
+	border: 1px solid black;
+	width: 50%;
+	padding: 1%;
+	
+}
+
+.title {
+	font-size: 2vw;
+	text-decoration: underline;
+}
+
+
+.comment {
+	font-style: italic;
+	border: 1px solid black;
+	width: 50%;
+	padding: 1%;
+}
