@@ -2,26 +2,115 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-color: #f9f7f3;
+	box-sizing: border-box;
+	font-size: 1.5vw;
+	font-family: 'Raleway', sans-serif;
+}
+
+.header {
+		position: fixed;
+		width: 100%;
+		background-color: #B03060;
+}
+
+.header h1 {
+	text-align: center;
+	font-size: 4vw;
+	padding: 1% 0 0 0;
+	margin: 0;
+	font-family: 'Short Stack', cursive;
+}
+
+.navbar {
+	text-align: right;
+	margin-right: 4%;
+	font-size: 2vw;
+}
+
+.navbar a {
+	padding: 1%;
+}
+
+.container {
+	padding-top: 10%;
+}
+
+.blog-post {
+	text-align:center;	
+}
+
+textarea#message_area{
+	width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+}
+
+#title_area {
+	width: 200px;
+	height: 20px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+}
+
+.feed {
+	width: 70%;
+	margin: 0 auto;
+}
 
 .whole-post{
-	border: 1px solid black;
-	width: 50%;
-	padding: 1%;
-	margin: 1%;
-	
+	margin-top: 10%;
+	width: 100%;
+	margin: 0 auto;
+	padding: 7% 0;
 }
 
 .title {
-	font-size: 2vw;
-	text-decoration: underline;
+	font-size: 3vw;
+	border-bottom: 1px solid black;
+	color: #581830;
+	font-family: 'Short Stack', cursive;
+}
+
+.body {
+	padding-left: 3%;
+}
+
+.link {
+	font-size: 1vw;
+}
+
+.date {
+	font-size: 1vw;
+}
+
+.column-one {
+	float:left;
+}
+
+.column-two {
+	margin-left: 20%;
+	float:left;
 }
 
 
+
 .comment {
+	display: none;
 	font-style: italic;
-	border: 1px solid black;
+	font-size: 1.4vw;
 	width: 50%;
 	padding: 1%;
+	margin-top: 5%;
 }
 
 .comment-field {
