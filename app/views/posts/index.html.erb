@@ -35,6 +35,7 @@
           <%= comment.message %>
           <% if @current_user && @current_user.id == post.user.id %>
            <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete %>
+           <%= link_to 'Edit', post_comment_path(post.id, comment.id), method: :update %>
            <% end %>
            <br>
 
