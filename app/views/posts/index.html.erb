@@ -1,6 +1,13 @@
 <div class="blog-post">
   <% if logged_in? %>
-    <%= form_for @post_new do |i| %>
+
+
+    <%= form_for @post_new, html: {multipart: true} do |i| %>
+
+      <%= i.label :image %><br>
+      <%= i.file_field :image %>
+
+
       <%= i.label :title %>
       <%= i.text_field :title, id: 'title_area' %><br><br>
       <%= i.label :body %>
@@ -16,11 +23,12 @@
 <div class="feed">
 <% @posts.reverse.first(10).each do |post| %>
   <div class="whole-post">
+
     <div class="title">
-      <%= post.title %> - 
+      <%= post.title %>
     </div>
 
-
+      <%= image_tag post.image.url(:medium) if post.image.exists? %>
       <p><%= link_to post.user.fname, user_path(post.user_id) %> says -  </p>
 
     <div class="body">
@@ -41,10 +49,17 @@
       <div class="comment">
         <div class="column-one">
           <%= comment.user.fname %><br>
-          <span class='date'><%= comment.created_at.strftime("%d %b. %Y") %> <%= comment.created_at.strftime("%l:%M")%></span> 
+          <span class='date'><%= comment.created_at.strftime("%d %b. %Y") %> <%= comment.created_at.strftime("%l:%M")%></span>
         </div>
         <div class="column-two">
           <%= comment.message %>
+
+          <% if @current_user && @current_user.id == post.user.id %>
+           <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete %>
+           <%= link_to 'Edit', post_comment_path(post.id, comment.id), method: :update %>
+           <% end %>
+           <br>
+
 
         </div>
         <% if session[:user_id] == comment.user_id %>
