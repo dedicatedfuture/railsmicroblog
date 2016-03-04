@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
 	end
 
   def create
-    @comment = Comment.create(params[:comment])    
+    @comment = Comment.create(comment_params)    
     if @comment.save
       redirect_to '/'
     else
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
 
   def update
   	@comment = get_post
-    @comment.update(params[:comment])
+    @comment.update(comment_params)
     if @comment.save
       flash[:notice] = "Your comment was successfully updated"
       redirect_to '/'
@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
    private
 
    def comment_params
-        params.require(:comment).permit(:user_id, :post_id, :etc)
+        params.require(:comment).permit(:user_id, :post_id, :message)
    end
 
 

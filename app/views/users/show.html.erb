@@ -1,30 +1,63 @@
-This will be a specific user's profile page.
-<br><br>
-<%= @user.fname %>
-<%= @user.lname %><br>
-<%= @user.email %><br>
-<%= @user.description %>
+<div class="user-info">
+  <% if logged_in? %>
+      <h1>Name: <%= @user.fname %> <%= @user.lname.chars.first %>.</h1>
+      <h3>Email: <%= @user.email %></h3>
+      <h5>About me: <%= @user.description %></h5>
+      <h4><%= @user.fname %> has 
+      <% if @users_posts.length == 1 %>
+        <%= @users_posts.length %> post.
+      <% else %>
+        <%= @users_posts.length %> posts.</h4>
+      <% end %>
+    <% else %>
+      <h1>Name: <%= @user.fname %> <%= @user.lname.chars.first %>.</h1>
+      <h5>About me: <%= @user.description %></h5>
+    <% end %>
 
-<br>
+    <% if session[:user_id] == @user.id %>
+      <div class="edit-user">
+        <%= link_to 'Edit', edit_user_path(@user) %>
+      </div>
+    <% end %>
+</div>
+
+
+
+
+<div class="feed">
 <% @users_posts.reverse.first(10).each do |post| %>
   <div class="whole-post">
     <div class="title">
       <%= post.title %>
     </div>
-      <%= post.id %>
-      <span class='comment-button'><%= link_to 'Comment'%> </span>
-      <%= link_to 'Edit', edit_post_path(post) %>
-      <%= link_to 'Delete Post', post, :method => :delete %>
     <div class="body">
+      <p><%= link_to post.user.fname, user_path(post.user_id) %> says -  </p>
       <%= post.body %>
     </div>
-      <% post.comments.reverse.first(3).each do |comment|%>
-        <div class="comment">
-          <%= comment.message %>
-          <%= link_to 'Delete Comment', post_comment_path(post.id, comment.id), :method => :delete %><br>
+        <% if logged_in? %>
+      <span class='comment-button link'><%= link_to 'Add a Comment', new_post_comment_path(post) %></span>
+      <span class='comment-view link'><%= link_to 'View Comments', new_post_comment_path(post) %></span>
+    <% end %>
+
+    <% if session[:user_id] == post.user_id %>
+      <span class='edit-button link'><%= link_to 'Edit', edit_post_path(post) %></span>
+      <span class='delete-button link'><%= link_to 'Delete Post', post, :method => :delete %></span>
+    <% end %>
+    <% post.comments.reverse.first(3).each do |comment|%>
+      <div class="comment">
+        <div class="column-one">
+          <%= comment.user.fname %><br>
+          <span class='date'><%= comment.created_at.strftime("%d %b. %Y") %> <%= comment.created_at.strftime("%l:%M")%></span> 
         </div>
-      <% end %>
-     <%= post.user.fname %>
+        <div class="column-two">
+          <%= comment.message %>
+
+        </div>
+        <% if session[:user_id] == comment.user_id %>
+          <span class='delete-button link'><%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete %></span><br>
+        <% end %>
+      </div>
+    <% end %>
 
     <% if logged_in? %>
       <div class="comment-field">
@@ -39,3 +72,4 @@ This will be a specific user's profile page.
     <% end %>
   </div>
 <% end %>
+</div>

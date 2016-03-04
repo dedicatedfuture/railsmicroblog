@@ -22,24 +22,28 @@ body {
 
 .header h1 {
 	text-align: center;
-	font-size: 4vw;
+	font-size: 4.3vw;
 	padding: 1% 0 0 0;
 	margin: 0;
-	font-family: 'Short Stack', cursive;
+	font-family: 'Amatic SC', cursive;
 }
 
 .navbar {
 	text-align: right;
 	margin-right: 4%;
-	font-size: 2vw;
+	font-size: 1.4vw;
+	margin-bottom: 1.5%;
 }
 
 .navbar a {
-	padding: 1%;
+	padding: .6%;
+	border: 1px black solid;
+	color: black;
+	text-decoration: none;
 }
 
 .container {
-	padding-top: 10%;
+	padding-top: 12%;
 }
 
 .blog-post {
@@ -49,17 +53,17 @@ body {
 textarea#message_area{
 	width: 600px;
 	height: 120px;
-	border: 3px solid #cccccc;
+	border: 3px solid #B03060;
 	padding: 5px;
-	font-family: Tahoma, sans-serif;
+	font-family: 'Raleway', sans-serif;
 }
 
 #title_area {
 	width: 200px;
 	height: 20px;
-	border: 3px solid #cccccc;
+	border: 3px solid #B03060;
 	padding: 5px;
-	font-family: Tahoma, sans-serif;
+	font-family: 'Raleway', sans-serif;
 }
 
 .feed {
@@ -78,7 +82,7 @@ textarea#message_area{
 	font-size: 3vw;
 	border-bottom: 1px solid black;
 	color: #581830;
-	font-family: 'Short Stack', cursive;
+	font-family: 'Amatic SC', cursive;
 }
 
 .body {
@@ -102,8 +106,6 @@ textarea#message_area{
 	float:left;
 }
 
-
-
 .comment {
 	display: none;
 	font-style: italic;
@@ -116,3 +118,13 @@ textarea#message_area{
 .comment-field {
 	display: none;
 }
+
+
+
+.user-info {
+	text-align: center;
+}
+
+
+
+
