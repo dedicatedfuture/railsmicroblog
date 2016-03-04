@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/' => 'posts#index'
   resources :users
   resources :posts do
-    resources :comments, :only => [:new, :create, :destroy]
+    resources :comments, :only => [:new, :create, :edit, :update, :destroy]
   end
 
   # namespace :nesting

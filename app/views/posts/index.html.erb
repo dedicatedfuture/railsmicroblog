@@ -37,7 +37,11 @@
     </div>
     <% if logged_in? %>
       <span class='comment-button link'><%= link_to 'Add a Comment', new_post_comment_path(post) %></span>
-      <span class='comment-view link'><%= link_to 'View Comments', new_post_comment_path(post) %></span>
+      <span class='comment-view link'>
+        <% if post.comments.length >= 1 %>
+          <%= link_to 'View Comments', new_post_comment_path(post) %>(<%= post.comments.length %>)
+        <% end %>
+      </span>
     <% end %>
 
     <% if session[:user_id] == post.user_id %>

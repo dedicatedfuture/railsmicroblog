@@ -12,12 +12,11 @@ class SessionsController < ApplicationController
       redirect_to '/'
     else
       flash[:alert] = "Invalid email/password."
-      render 'new'
+      redirect_to '/login'
     end
   end
 
   def destroy
-  	puts "********************************************************************************"
 		session[:user_id] = nil
 		reset_session
     redirect_to '/'
