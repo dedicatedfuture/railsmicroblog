@@ -16,11 +16,11 @@
 
 			<div class="navbar">
 				<% if logged_in? %>
-		 			<%= link_to "Home", posts_path %>
+		 			<%= link_to "Home", '/' %>
 		 			<%= link_to "Profile", current_user %>
 		 			<%= link_to "Log out", logout_path, method: :delete %>
 				<% else %>  
-				  <%= link_to "Home", posts_path %>
+				  <%= link_to "Home", '/' %>
 			    <%= link_to "Log In", login_path %>
 			    <%= link_to "Sign Up", new_user_path %>
 				<% end %>

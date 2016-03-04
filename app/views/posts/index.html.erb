@@ -19,7 +19,7 @@
 </div>
 
 
-<br>
+
 <div class="feed">
 <% @posts.reverse.first(10).each do |post| %>
   <div class="whole-post">
@@ -36,16 +36,16 @@
       <%= post.body %>
     </div>
     <% if logged_in? %>
-      <span class='comment-button link'><%= link_to 'Add a Comment', new_post_comment_path(post) %></span>
+      <span class='comment-button link'><button>Add a comment.</button></span>
       <span class='comment-view link'>
         <% if post.comments.length >= 1 %>
-          <%= link_to 'View Comments', new_post_comment_path(post) %>(<%= post.comments.length %>)
+          <button>View comments.(<%= post.comments.length %>)</button>
         <% end %>
       </span>
     <% end %>
 
     <% if session[:user_id] == post.user_id %>
-      <span class='edit-button link'><%= link_to 'Edit', edit_post_path(post) %></span>
+      <span class='edit-button link'><%= link_to 'Edit Post', edit_post_path(post) %></span>
       <span class='delete-button link'><%= link_to 'Delete Post', post, :method => :delete %></span>
     <% end %>
 
@@ -58,16 +58,15 @@
         <div class="column-two">
           <%= comment.message %>
 
-          <% if @current_user && @current_user.id == post.user.id %>
-           <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete %>
-           <%= link_to 'Edit', post_comment_path(post.id, comment.id), method: :update %>
-           <% end %>
-           <br>
+          <% if logged_in? && @current_user.id == post.user.id %>
+           <span class='delete-button link'><%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete %></span>
+          <% end %>
 
 
         </div>
         <% if session[:user_id] == comment.user_id %>
-          <span class='delete-button link'><%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete %></span><br>
+          <span class='delete-button link'><%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete %></span>
+          <span class='edit-button link'><%= link_to 'Edit', post_comment_path(post.id, comment.id), method: :update %></span><br>
         <% end %>
       </div>
     <% end %>
