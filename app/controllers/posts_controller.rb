@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   def create
 
     puts params
-    @post = Post.new(params[:post])
+    @post = Post.new(post_params)
     if @post.save
       flash[:notice] = "Post was successful!"
       redirect_to '/'
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 
   def update
     @post = get_post
-    @post.update(params[:post])
+    @post.update(post_params)
     if @post.save
       flash[:notice] = "Your post were saved"
       redirect_to '/'
@@ -58,6 +58,11 @@ class PostsController < ApplicationController
     redirect_to '/'
   end
 
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body, :user_id, :image)
+  end
 
 
 

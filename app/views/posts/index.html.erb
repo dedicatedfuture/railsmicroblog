@@ -1,6 +1,13 @@
 <div class="blog-post">
   <% if logged_in? %>
-    <%= form_for @post_new do |i| %>
+
+
+    <%= form_for @post_new, html: {multipart: true} do |i| %>
+
+      <%= i.label :image %><br>
+      <%= i.file_field :image %>
+
+
       <%= i.label :title %>
       <%= i.text_field :title, id: 'title_area' %><br><br>
       <%= i.label :body %>
@@ -16,11 +23,12 @@
 <div class="feed">
 <% @posts.reverse.first(10).each do |post| %>
   <div class="whole-post">
+
     <div class="title">
-      <%= post.title %> -
+      <%= post.title %>
     </div>
 
-
+      <%= image_tag post.image.url(:medium) if post.image.exists? %>
       <p><%= link_to post.user.fname, user_path(post.user_id) %> says -  </p>
 
     <div class="body">

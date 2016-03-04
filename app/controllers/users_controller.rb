@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
 		puts "****************************************************************************************************************"
 		puts params
-		@user = User.new(params[:user])
+		@user = User.new(user_params)
 		if @user.save
 			log_in @user
 			flash[:notice] = "User was successfully created"
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
 	def update
 		@user = get_user
-		@user.update(params[:user])
+		@user.update(user_params)
 		if @user.save
 			flash[:notice] = "Your changes were saved"
 			redirect_to '/'
@@ -54,5 +54,8 @@ class UsersController < ApplicationController
 		redirect_to '/'
 	end
 
-
+	private
+	def user_params
+		params.require(:user).permit(:fname, :lname, :email, :pword, :description)
+	end
 end
