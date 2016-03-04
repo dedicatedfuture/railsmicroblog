@@ -10,10 +10,6 @@ module Railsmicroblog
   class Application < Rails::Application
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8587c86d6b29a5ae65354aefe2315556534ad936
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
