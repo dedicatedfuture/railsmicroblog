@@ -14,20 +14,43 @@
 //= require jquery_ujs
 //= require_tree .
 
-
 $(document).ready(function(){
 	
 	$(".comment-button").click(function(e){
 		e.preventDefault();
 		var $thisPost = $(this).closest('.whole-post');
 		$thisPost.find(".comment-field").toggle();
-	})
+	});
 
 	$(".comment-view").click(function(e){
 		e.preventDefault();
 		var $thisPost = $(this).closest('.whole-post');
 		$thisPost.find(".comment").toggle();
-	})
+	});
+
+	$(".home-button").mouseover(function(){
+		$(this).css("color","#30b080");
+	});
+	$(".home-button").mouseout(function(){
+		$(this).css("color","black");
+	});
+
+
+	$(".navbar-one").mouseover(function(){
+		$(this).css("color","#30b080");
+		$(this).css("fontSize","1.7vw");
+	});
+
+	$(".navbar-one").mouseout(function(){
+		$(this).css("color","black");
+		$(this).css("fontSize","1.4vw");
+
+	});
+
+
+
+
+
 
 
 });

@@ -1,17 +1,19 @@
-This is the user edit page.
+
+<div class="user-info">
+
+	<%= form_for @user do |f| %>
+		<%= f.label :fname, "First Name:" %><br>
+		<%= f.text_field :fname, :class => 'title_area' %><br>
+		<%= f.label :lname, "Last Name:" %><br>
+		<%= f.text_field :lname, :class => 'title_area' %><br>
+		<%= f.label :email, "Email:" %><br>
+		<%= f.text_field :email, :class => 'title_area' %><br><br>
+		<%= f.label :description, "Give us a quick description of yourself!" %><br><br>
+		<%= f.text_area :description, :class => 'message_area' %><br><br>
+		<%= f.submit nil, :class => 'button' %>
+	<% end %>
 
 
-<%= form_for @user do |f| %>
-	<%= f.label :fname %>
-	<%= f.text_field :fname %>
-	<%= f.label :lname %>
-	<%= f.text_field :lname %>
-	<%= f.label :email %>
-	<%= f.text_field :email %>
-	<%= f.label :description %>
-	<%= f.text_area :description %>
-	<%= f.submit :update %>
-<% end %>
+	<%= link_to("Delete User", user_path(@user), method: :delete, :class => 'button delete_user_button') %>
 
-
-<%= link_to("Delete User", user_path(@user), method: :delete) %>
+</div>

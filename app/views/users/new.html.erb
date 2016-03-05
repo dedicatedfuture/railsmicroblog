@@ -1,15 +1,17 @@
-This is the use sign-up page.
+<div class="user-info">
 
-<%= form_for @user do |f| %>
-	<%= f.label :fname %>
-	<%= f.text_field :fname %>
-	<%= f.label :lname %>
-	<%= f.text_field :lname %>
-	<%= f.label :email %>
-	<%= f.text_field :email %>
-	<%= f.label :pword %>
-	<%= f.password_field :pword %>
-	<%= f.label :description %>
-	<%= f.text_area :description %>
-	<%= f.submit :create %>
-<% end %>
+	<%= form_for @user do |f| %>
+		<%= f.label :fname, "First Name" %><br>
+		<%= f.text_field :fname, :class => 'title_area'%><br>
+		<%= f.label :lname, "Last Name" %><br>
+		<%= f.text_field :lname, :class => 'title_area'%><br>
+		<%= f.label :email %><br>
+		<%= f.text_field :email, :class => 'title_area'%><br>
+		<%= f.label :pword, "Password" %><br>
+		<%= f.password_field :pword, :class => 'title_area'%><br><br>
+		<%= f.label :description, "Tell us something interesting about you!" %><br>
+		<%= f.text_area :description, :class => 'message_area'%><br><br>
+		<%= f.submit nil, :class => 'button' %>
+	<% end %>
+
+</div>

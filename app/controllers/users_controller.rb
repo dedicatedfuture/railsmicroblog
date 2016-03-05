@@ -9,9 +9,6 @@ class UsersController < ApplicationController
 	end
 
 	def create
-
-		puts "****************************************************************************************************************"
-		puts params
 		@user = User.new(user_params)
 		if @user.save
 			log_in @user
@@ -37,10 +34,10 @@ class UsersController < ApplicationController
 		@user.update(user_params)
 		if @user.save
 			flash[:notice] = "Your changes were saved"
-			redirect_to '/'
+			redirect_to user_path
 		else
 			flash[:alert] = "There was a problem saving your changes"
-			redirect_to '/'
+			redirect_to user_path
 		end
 	end
 

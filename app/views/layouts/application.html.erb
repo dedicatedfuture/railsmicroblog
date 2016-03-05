@@ -4,7 +4,7 @@
 		<title>Railsmicroblog</title>
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-		<link href='https://fonts.googleapis.com/css?family=Short+Stack' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 		<link href='https://fonts.googleapis.com/css?family=Short+Stack|Raleway:300' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
 		<%= csrf_meta_tags %>
@@ -12,17 +12,17 @@
 	<body>
 		<div class="header">
 
-		<h1>predilections.</h1>
+		<a href="/", class="home-button">predilections.</a>
 
 			<div class="navbar">
 				<% if logged_in? %>
-		 			<%= link_to "Home", '/' %>
-		 			<%= link_to "Profile", current_user %>
-		 			<%= link_to "Log out", logout_path, method: :delete %>
+		 			<%= link_to "Home", '/', :class => 'navbar-one' %>
+		 			<%= link_to "Profile", current_user, :class => 'navbar-one'  %>
+		 			<%= link_to "Log out", logout_path, method: :delete, :class => 'navbar-one'  %>
 				<% else %>  
-				  <%= link_to "Home", '/' %>
-			    <%= link_to "Log In", login_path %>
-			    <%= link_to "Sign Up", new_user_path %>
+				  <%= link_to "Home", '/', :class => 'navbar-one'  %>
+			    <%= link_to "Log In", login_path, :class => 'navbar-one'  %>
+			    <%= link_to "Sign Up", new_user_path, :class => 'navbar-one'  %>
 				<% end %>
 			</div>
 		</div>

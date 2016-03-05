@@ -1,24 +1,17 @@
 <div class="blog-post">
   <% if logged_in? %>
-
-
     <%= form_for @post_new, html: {multipart: true} do |i| %>
-
-      <%= i.label :image %><br>
-      <%= i.file_field :image %>
-
-
       <%= i.label :title %>
-      <%= i.text_field :title, id: 'title_area' %><br><br>
+      <%= i.text_field :title, :class => 'title_area' %><br><br>
       <%= i.label :body %>
-      <%= i.text_area :body, :id => "message_area" %>
-      <%= i.hidden_field :user_id, :value => current_user.id %>
-      <%= i.submit "Submit" %>
+      <%= i.text_area :body, :class => "message_area" %><br><br>
+      <%= i.label :image %>
+      <%= i.file_field :image %>
+      <%= i.hidden_field :user_id, :value => current_user.id %><br><br><br>
+      <%= i.submit "Create Blog Post", :class => 'button' %>
     <% end %>
   <% end %>
 </div>
-
-
 
 <div class="feed">
 <% @posts.reverse.first(10).each do |post| %>
@@ -27,57 +20,60 @@
     <div class="title">
       <%= post.title %>
     </div>
-
+    <div class="image-post">
       <%= image_tag post.image.url(:medium) if post.image.exists? %>
       <p><%= link_to post.user.fname, user_path(post.user_id) %> says -  </p>
-
+    </div>
     <div class="body">
-
       <%= post.body %>
     </div>
     <% if logged_in? %>
-      <span class='comment-button link'><button>Add a comment.</button></span>
+      <span class='comment-button link'><button class="button">Add a comment.</button></span>
       <span class='comment-view link'>
         <% if post.comments.length >= 1 %>
-          <button>View comments.(<%= post.comments.length %>)</button>
+          <button class="button">View comments.(<%= post.comments.length %>)</button>
         <% end %>
       </span>
     <% end %>
 
     <% if session[:user_id] == post.user_id %>
-      <span class='edit-button link'><%= link_to 'Edit Post', edit_post_path(post) %></span>
-      <span class='delete-button link'><%= link_to 'Delete Post', post, :method => :delete %></span>
+      <span class='button link'><%= link_to 'Edit Post', edit_post_path(post) %></span>
+      <span class='button link'><%= link_to 'Delete Post', post, :method => :delete %></span>
     <% end %>
 
     <% post.comments.reverse.first(3).each do |comment|%>
       <div class="comment">
         <div class="column-one">
           <%= comment.user.fname %><br>
-          <span class='date'><%= comment.created_at.strftime("%d %b. %Y") %> <%= comment.created_at.strftime("%l:%M")%></span>
+          <span class='date'><%= comment.created_at.strftime("%l:%M on ")%></span>
+          <span class='date'><%= comment.created_at.strftime("%D")%></span>
         </div>
         <div class="column-two">
-          <%= comment.message %>
-
+          <%= comment.message %> 
           <% if logged_in? && @current_user.id == post.user.id %>
-           <span class='delete-button link'><%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete %></span>
+           <span class='delete-button link'>  <----- <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete, :class => 'button-two' %></span>
           <% end %>
-
-
-        </div>
         <% if session[:user_id] == comment.user_id %>
-          <span class='delete-button link'><%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete %></span>
-          <span class='edit-button link'><%= link_to 'Edit', post_comment_path(post.id, comment.id), method: :update %></span><br>
-        <% end %>
-      </div>
-    <% end %>
+          <span class='delete-button link'>
+            <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete, :class => 'button-two' %>
+          </span>
+          <span class='edit-button link'>
+            <%= link_to 'Edit', post_comment_path(post.id, comment.id), method: :update, :class => 'button-two' %>
+          </span><br>
+        <% end %> 
+        </div>
 
+ 
+      </div>   
+    <% end %>
+<br>
     <% if logged_in? %>
       <div class="comment-field">
         <%= form_for [post, post.comments.build] do |i| %>
           <%= i.hidden_field :user_id, :value => current_user.id %>
           <%= i.hidden_field :post_id, :value => post.id %>
           <%= i.label :message %>
-          <%= i.text_area :message %>
+          <%= i.text_area :message, :id => "message_area" %>
           <%= i.submit :create %>
         <% end %>
       </div>

@@ -1,15 +1,10 @@
-<h1>Login</h1>
-
-<%= form_for(:session, url: login_path) do |f| %>
-
-	<%= f.label :email %>
-	<%= f.email_field :email, class: 'form-control' %>
-
-	<%= f.label :pword, "Password"%>
-	<%= f.password_field :pword, class: 'form-control' %>
-
-<%= f.submit "Log in", class: "btn btn-primary" %>
-<% end %>
-
-<br><br>
-
+<div class="user-info">
+	<h1>Login</h1>
+	<%= form_for(:session, url: login_path) do |f| %>
+		<%= f.label :email %>
+		<%= f.email_field :email, class: 'form-control title_area' %>
+		<%= f.label :pword, "Password"%>
+		<%= f.password_field :pword, class: 'form-control title_area' %><br><br>
+		<%= f.submit "Welcome Home.", class: "button" %>
+	<% end %>
+</div>
