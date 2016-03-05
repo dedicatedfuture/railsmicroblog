@@ -16,9 +16,11 @@
 <div class="feed">
 <% @posts.reverse.first(10).each do |post| %>
   <div class="whole-post">
-
     <div class="title">
       <%= post.title %>
+    </div>
+    <div class="time_post">
+      <%= post.created_at.strftime("%D @ %l:%M %P") %>
     </div>
     <div class="image-post">
       <%= image_tag post.image.url(:medium) if post.image.exists? %>
@@ -50,17 +52,19 @@
         </div>
         <div class="column-two">
           <%= comment.message %> 
-          <% if logged_in? && @current_user.id == post.user.id %>
-           <span class='delete-button link'>  <----- <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete, :class => 'button-two' %></span>
+          <% if logged_in? %>
+            <% if @current_user.id == post.user.id && session[:user_id] != comment.user_id %>
+              <span class='delete-button link'>  <----- <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete, :class => 'button-two' %></span>
+            <% end %>
+            <% if session[:user_id] == comment.user_id %>
+              <span class='delete-button link'>
+                <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete, :class => 'button-two' %>
+              </span>
+              <span class='edit-button link'>
+                <%= link_to 'Edit', post_comment_path(post.id, comment.id), method: :update, :class => 'button-two' %>
+              </span><br>
+            <% end %> 
           <% end %>
-        <% if session[:user_id] == comment.user_id %>
-          <span class='delete-button link'>
-            <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete, :class => 'button-two' %>
-          </span>
-          <span class='edit-button link'>
-            <%= link_to 'Edit', post_comment_path(post.id, comment.id), method: :update, :class => 'button-two' %>
-          </span><br>
-        <% end %> 
         </div>
 
  
