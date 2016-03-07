@@ -51,7 +51,7 @@ a {
 }
 
 .blog-post {
-	text-align:center;	
+	text-align:center;
 }
 
 .message_area{
@@ -135,9 +135,9 @@ a {
 	color: black;
 	font-size: 1.5vw;
 	border: 0;
-	box-shadow: inset 0 -2px 2px rgba(0,0,0,0.5), 
+	box-shadow: inset 0 -2px 2px rgba(0,0,0,0.5),
 							inset 0 2px 2px rgba(255,255,255,1);
-	a:link { 
+	a:link {
   	color: black;
 	}
 }
@@ -150,9 +150,9 @@ a {
 	color: black;
 	font-size: 1.3vw;
 	border: 0;
-	box-shadow: inset 0 -2px 2px rgba(0,0,0,0.5), 
-							inset 0 2px 2px rgba(255,255,255,1);	
-	a:link { 
+	box-shadow: inset 0 -2px 2px rgba(0,0,0,0.5),
+							inset 0 2px 2px rgba(255,255,255,1);
+	a:link {
   	color: black;
 	}
 }
@@ -168,6 +168,15 @@ a {
 	color:green;
 }
 
+
+.coolusers {
+	text-align: center;
+	list-style-position:inside;
+	text-decoration: underline;
+}
+.image-post{
+	text-align: center;
+}
 
 
 

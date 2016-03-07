@@ -51,7 +51,7 @@
           <span class='date'><%= comment.created_at.strftime("%D")%></span>
         </div>
         <div class="column-two">
-          <%= comment.message %> 
+          <%= comment.message %>
           <% if logged_in? %>
             <% if @current_user.id == post.user.id && session[:user_id] != comment.user_id %>
               <span class='delete-button link'>  <----- <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete, :class => 'button-two' %></span>
@@ -63,12 +63,12 @@
               <span class='edit-button link'>
                 <%= link_to 'Edit', post_comment_path(post.id, comment.id), method: :update, :class => 'button-two' %>
               </span><br>
-            <% end %> 
+            <% end %>
           <% end %>
         </div>
 
- 
-      </div>   
+
+      </div>
     <% end %>
 <br>
     <% if logged_in? %>
@@ -85,13 +85,15 @@
   </div>
 <% end %>
 </div>
-<p>Check out all of our super cool users</p>
-<ol>
-<% @users.each do |user| %>
-  <li><%= link_to user.fname, user_path(user.id) %></li>
-  <% end %>
-</ol>
-
-
+<div class="outu"
+  <div class="coolu">
+    <h2 class="coolusers">Check out all of our super cool users</h2>
+    <ol class="coolusers">
+    <% @users.each do |user| %>
+      <li ><%= link_to user.fname, user_path(user.id) %></li>
+      <% end %>
+  </ol>
+  </div>
+</div>
 
 
