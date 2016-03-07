@@ -54,15 +54,15 @@
           <%= comment.message %>
           <% if logged_in? %>
             <% if @current_user.id == post.user.id && session[:user_id] != comment.user_id %>
-              <span class='delete-button link'>  <----- <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete, :class => 'button-two' %></span>
+              <span class='delete-button link'> <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete, :class => 'button-two' %></span>
             <% end %>
             <% if session[:user_id] == comment.user_id %>
               <span class='delete-button link'>
                 <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete, :class => 'button-two' %>
               </span>
-              <span class='edit-button link'>
+            <!--   <span class='edit-button link'>
                 <%= link_to 'Edit', post_comment_path(post.id, comment.id), method: :update, :class => 'button-two' %>
-              </span><br>
+              </span> --><br>
             <% end %>
           <% end %>
         </div>

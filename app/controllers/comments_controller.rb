@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
 	end
 
   def create
-    @comment = Comment.create(comment_params)    
+    @comment = Comment.create(comment_params)
     if @comment.save
       redirect_to '/'
     else
@@ -14,8 +14,11 @@ class CommentsController < ApplicationController
     end
   end
 
+
   def edit
   	@comment = get_comment
+    @comment.update(comment_params)
+    redirect_to '/'
   end
 
   def update

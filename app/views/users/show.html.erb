@@ -3,7 +3,7 @@
       <h1>Name: <%= @user.fname %> <%= @user.lname.chars.first %>.</h1>
       <h3>Email: <%= @user.email %></h3>
       <h5>About me: <%= @user.description %></h5>
-      <h4><%= @user.fname %> has 
+      <h4><%= @user.fname %> has
       <% if @users_posts.length == 1 %>
         <%= @users_posts.length %> post.
       <% else %>
@@ -64,7 +64,7 @@
           <%= comment.message %>
 
           <% if logged_in? && @current_user.id == post.user.id %>
-           <span class='delete-button link'><----- <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete, :class => 'button-two' %></span>
+           <span class='delete-button link'> <%= link_to 'Delete', post_comment_path(post.id, comment.id), method: :delete, :class => 'button-two' %></span>
           <% end %>
 
 
