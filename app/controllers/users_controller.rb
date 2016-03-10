@@ -10,12 +10,16 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
+
 		if @user.save
 			log_in @user
 			flash[:notice] = "User was successfully created"
 			redirect_to '/'
 		else
-			flash[:alert] = "There was an error creating your user"
+
+   			flash[:alert] = @user.errors.full_messages
+
+
 			redirect_to '/users/new'
 		end
 	end
